@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaEdit, FaRegCheckSquare } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
-import Navbar from './Navbar';
 
 const Tasks = () => {
     const [isCompleteScreen, setIsCompleteScreen] = useState(false);
