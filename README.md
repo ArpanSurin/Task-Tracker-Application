@@ -1,8 +1,8 @@
 # TASK TRACKER APPLICATION
 
-## Project Description
+## Project OVerview
 
-A simple task tracker application built using React.js for managing tasks and to-do items.
+The Task Tracker App is a user-friendly web application designed to help individuals and teams manage their tasks efficiently. This React-based application allows users to add, edit, delete, and mark tasks as complete, ensuring that all tasks are organized and tracked effectively. The app also includes features for setting task deadlines with date and time pickers, providing a comprehensive solution for task management.
 
 **Note :** This project was developed as a part of my virtual internship at **CodSoft.**
 
@@ -14,13 +14,15 @@ A simple task tracker application built using React.js for managing tasks and to
 
 ## Features
 
-**Add tasks :** Add or Create new tasks or a new to-do item in the application.
+**Add tasks :** Enter the task name and description in the input fields. Select the desired date and time for the task. Click the "Add Task" button to add the task to the list.
 
-**Edit tasks :** Edit tasks or a to-do item in the task list.
+**Edit tasks :** Click the edit icon next to the task you want to edit. Modify the task details as needed. Click the "Update Task" button to save changes.
 
-**Delete tasks :** delete any task from the to-do list.
+**Delete tasks :** Click the delete icon next to the task you want to remove.
 
-**Mark tasks :** mark tasks or to-do items as Completed in the application.
+**Mark tasks :** Mark tasks or to-do items as Completed in the application.
+
+**Responsive Design :** The app is designed to be responsive, ensuring it works seamlessly across various devices and screen sizes.
 
 ## Project Installation
 
