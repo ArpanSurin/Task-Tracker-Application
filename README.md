@@ -1,6 +1,6 @@
 # TASK TRACKER APPLICATION
 
-## Project OVerview
+## Project Overview
 
 The Task Tracker App is a user-friendly web application designed to help individuals and teams manage their tasks efficiently. This React-based application allows users to add, edit, delete, and mark tasks as complete, ensuring that all tasks are organized and tracked effectively. The app also includes features for setting task deadlines with date and time pickers, providing a comprehensive solution for task management.
 
@@ -8,9 +8,9 @@ The Task Tracker App is a user-friendly web application designed to help individ
 
 ## Tech Stack
 
-**React js** for building the front-end user interface.
-
-**Tailwind CSS** for styling the web page.
+**Frontend :** React, Tailwind CSS for styling, and React Icons for interactive icons.
+**Date and Time Management :** `react-datepicker` for selecting dates and times.
+**State Management :** React's `useState` hook for managing the application's state.
 
 ## Features
 
