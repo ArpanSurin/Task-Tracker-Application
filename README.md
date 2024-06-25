@@ -9,7 +9,9 @@ The Task Tracker App is a user-friendly web application designed to help individ
 ## Tech Stack
 
 **Frontend :** React, Tailwind CSS for styling, and React Icons for interactive icons.
+
 **Date and Time Management :** `react-datepicker` for selecting dates and times.
+
 **State Management :** React's `useState` hook for managing the application's state.
 
 ## Features
