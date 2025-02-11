@@ -14,7 +14,6 @@ const Tasks = () => {
     const [startTime, setStartTime] = useState(new Date());
 
     const handleAdd = () => {
-        // Create a new task object
         let newlist = {
             id: Date.now(),
             Taskitem: newTask,
@@ -23,11 +22,7 @@ const Tasks = () => {
             Time: startTime,
             Completed: false
         };
-
-        // Use the spread operator to add the new task to the list
         setAlltasks([...alltasks, newlist]);
-
-        // Clear input fields after adding the task
         setTask('');
         setDesc('');
     };
@@ -49,11 +44,7 @@ const Tasks = () => {
             Time: startTime,
             Completed: alltasks[editIndex].Completed
         };
-
-        const updatedTasks = alltasks.map((task, index) =>
-            index === editIndex ? updatedTask : task
-        );
-
+        const updatedTasks = alltasks.map((task, index) => index === editIndex ? updatedTask : task);
         setAlltasks(updatedTasks);
         setTask('');
         setDesc('');
@@ -61,135 +52,76 @@ const Tasks = () => {
     };
 
     const handleDelete = (idToDelete) => {
-        const updatedTasks = alltasks.filter(task => task.id !== idToDelete);
-        setAlltasks(updatedTasks);
-    }
+        setAlltasks(alltasks.filter(task => task.id !== idToDelete));
+    };
 
     const handleToggleComplete = (id) => {
-        const updatedTasks = alltasks.map(task =>
-            task.id === id ? { ...task, Completed: !task.Completed } : task
-        );
-        setAlltasks(updatedTasks);
+        setAlltasks(alltasks.map(task => task.id === id ? { ...task, Completed: !task.Completed } : task));
     };
 
     return (
-        <>
-            <div className="p-6 h-screen bg-slate-900 flex flex-col flex-grow overflow-hidden">
-
-                {/* Tasks Write */}
-                <div className="mx-6 text-white border-black bg-gray-800 rounded-lg">
-                    <div className='p-6 flex gap-5 items-center py-4 border-white-4 '>
-                        <label htmlFor="" className=''>Task </label>
-                        <input
-                            type="text"
-                            className='border border-gray-300 px-4 py-2 w-full rounded-lg bg-transparent'
-                            placeholder='Write Tasks'
-                            value={newTask}
-                            onChange={(e) => setTask(e.target.value)}
-                        />
-
-                        <label htmlFor="" className=''>Description </label>
-                        <input
-                            type='text'
-                            className='border border-gray-300 px-4 py-2 w-full rounded-lg bg-transparent'
-                            placeholder='About the task'
-                            value={newDesc}
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                    </div>
-
-                    <div className='p-6 mb-4 flex gap-10 justify-center items-center'>
-                        <label htmlFor="">Date</label>
-                        <DatePicker
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            className='bg-transparent text-white cursor-pointer border border-white rounded-lg p-2'
-                            dateFormat="yyyy/MM/dd"
-                        />
-
-                        <label htmlFor="">Time</label>
-                        <DatePicker
-                            selected={startTime}
-                            onChange={(date) => setStartTime(date)}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                            className='bg-transparent text-white cursor-pointer border border-white rounded-lg p-2'
-                        />
-                    </div>
-
-                    {editIndex !== null ? (
-                        <button
-                            type='submit'
-                            className='text-black font-bold bg-gray-300 hover:bg-black hover:text-white transition duration-300 py-2 rounded w-full hover:border-black'
-                            onClick={handleUpdate}
-                        >
-                            Update Task
-                        </button>
-                    ) : (
-                        <button
-                            type='submit'
-                            className='text-black font-bold bg-gray-300 hover:bg-black hover:text-white transition duration-300 py-2 rounded w-full hover:border-black'
-                            onClick={handleAdd}
-                        >
-                            Add Task
-                        </button>
-                    )}
+        <div className="p-6 h-screen bg-slate-900 flex flex-col overflow-hidden">
+            <div className="mx-auto w-full max-w-4xl text-white bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div className='flex flex-col md:flex-row gap-4 items-center'>
+                    <input
+                        type="text"
+                        className='border border-gray-300 px-4 py-2 w-full rounded-lg bg-transparent'
+                        placeholder='Write Task'
+                        value={newTask}
+                        onChange={(e) => setTask(e.target.value)}
+                    />
+                    <input
+                        type='text'
+                        className='border border-gray-300 px-4 py-2 w-full rounded-lg bg-transparent'
+                        placeholder='Description'
+                        value={newDesc}
+                        onChange={(e) => setDesc(e.target.value)}
+                    />
                 </div>
-
-                <div className='m-6 flex gap-4 justify-center flex-shrink-0'>
-                    <button
-                        className='bg-gray-300 transform-transition duration-300 hover:bg-black text-black hover:text-white font-bold py-2 px-4 rounded'
-                        onClick={() => setIsCompleteScreen(false)}
-                    >
-                        Tasks remaining
-                    </button>
-
-                    <button
-                        className='bg-gray-300 transform-transition duration-300 hover:bg-black text-black hover:text-white font-bold py-2 px-4 rounded'
-                        onClick={() => setIsCompleteScreen(true)}
-                    >
-                        Completed
-                    </button>
+                <div className='flex flex-col md:flex-row gap-4 mt-4 items-center'>
+                    <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        className='bg-transparent text-white cursor-pointer border border-white rounded-lg p-2 w-full'
+                        dateFormat="yyyy/MM/dd"
+                    />
+                    <DatePicker
+                        selected={startTime}
+                        onChange={(date) => setStartTime(date)}
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="h:mm aa"
+                        className='bg-transparent text-white cursor-pointer border border-white rounded-lg p-2 w-full'
+                    />
                 </div>
-
-                {/* Tasks List */}
-                <div className="mx-6 bg-gray-800 flex flex-col h-fit rounded-lg overflow-y-auto">
-                    {alltasks
-                        .filter(task => task.Completed === isCompleteScreen)
-                        .map((task, index) => (
-                            // Task list items
-                            <div key={task.id} className={`m-6 bg-gray-300 border-black rounded-lg shadow-2xl flex justify-between ${task.Completed ? 'opacity-50 line-through' : ''}`}>
-                                <h3 className='p-4 text-xl font-bold'>{task.Taskitem}</h3>
-                                <p className='p-4'>{task.Desc}</p>
-                                <p className='p-4'>{task.Date.toLocaleDateString()}</p>
-                                <p className='p-4'>{task.Time.toLocaleTimeString()}</p>
-
-                                <div className="flex items-center">
-                                    <button
-                                        className='flex justify-center items-center transform transition duration-300 hover:bg-black hover:text-white h-full w-14 rounded-lg'
-                                        onClick={() => handleEdit(index)}>
-                                        <FaEdit className='h-7 w-7 cursor-pointer' />
-                                    </button>
-                                    <button
-                                        className='flex justify-center items-center transform transition duration-300 hover:bg-black hover:text-white h-full w-14 rounded-lg'
-                                        onClick={() => handleToggleComplete(task.id)}
-                                    >
-                                        <FaRegCheckSquare className='h-7 w-7 cursor-pointer' />
-                                    </button>
-                                    <button
-                                        className='flex justify-center items-center transform transition duration-300 hover:bg-black hover:text-white h-full w-14 rounded-lg'
-                                        onClick={() => handleDelete(task.id)}>
-                                        <MdDelete className='h-7 w-7 cursor-pointer' />
-                                    </button>
-                                </div>
-                            </div>
-                    ))}
-                </div>
+                {editIndex !== null ? (
+                    <button className='mt-4 w-full bg-gray-300 text-black font-bold py-2 rounded-lg hover:bg-black hover:text-white transition duration-300' onClick={handleUpdate}>Update Task</button>
+                ) : (
+                    <button className='mt-4 w-full bg-gray-300 text-black font-bold py-2 rounded-lg hover:bg-black hover:text-white transition duration-300' onClick={handleAdd}>Add Task</button>
+                )}
             </div>
-        </>
+            <div className='flex gap-4 justify-center mt-6'>
+                <button className='bg-gray-300 text-black font-bold py-2 px-4 rounded-lg hover:bg-black hover:text-white transition duration-300' onClick={() => setIsCompleteScreen(false)}>Tasks Remaining</button>
+                <button className='bg-gray-300 text-black font-bold py-2 px-4 rounded-lg hover:bg-black hover:text-white transition duration-300' onClick={() => setIsCompleteScreen(true)}>Completed</button>
+            </div>
+            <div className="mx-auto w-full max-w-4xl bg-gray-800 p-6 mt-4 rounded-lg shadow-lg h-96 overflow-y-auto">
+                {alltasks.filter(task => task.Completed === isCompleteScreen).map((task, index) => (
+                    <div key={task.id} className={`bg-gray-300 p-4 rounded-lg mb-4 flex flex-col md:flex-row justify-between items-center shadow-md ${task.Completed ? 'opacity-50 line-through' : ''}`}>
+                        <div className='w-full text-center md:text-left md:w-1/3'><h3 className='text-xl font-bold'>{task.Taskitem}</h3></div>
+                        <div className='w-full text-center md:text-left md:w-1/3'><p>{task.Desc}</p></div>
+                        <div className='w-full text-center md:text-left md:w-1/6'><p>{task.Date.toLocaleDateString()}</p></div>
+                        <div className='w-full text-center md:text-left md:w-1/6'><p>{task.Time.toLocaleTimeString()}</p></div>
+                        <div className='flex gap-2 mt-2 md:mt-0'>
+                            <button className='p-2 bg-gray-700 text-white rounded-lg hover:bg-black' onClick={() => handleEdit(index)}><FaEdit /></button>
+                            <button className='p-2 bg-green-500 text-white rounded-lg hover:bg-green-700' onClick={() => handleToggleComplete(task.id)}><FaRegCheckSquare /></button>
+                            <button className='p-2 bg-red-500 text-white rounded-lg hover:bg-red-700' onClick={() => handleDelete(task.id)}><MdDelete /></button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
